@@ -28,6 +28,9 @@ class Employee(models.Model):
     class Meta:
         db_table = 'app_employee'
 
+    def __str__(self):
+        return self.full_name
+        
 class EmployeeAttendance(models.Model):
     status = models.BooleanField(default=True)
     employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
