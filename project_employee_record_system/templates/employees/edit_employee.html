@@ -5,5 +5,97 @@
 {% endblock %}
 
 {% block content %}
-<h1>This is employee edit page</h1>
+<div class="container mt-5">
+    <h1>This is employee edit page</h1>
+    <a href="{% url 'emp-index' %}" class="btn btn-primary">BACK</a>
+    <hr>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <form>
+                <div class="form-group mb-2">
+                    <label class="mb-2">Full Name</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        name="full_name"
+                        value="{{ data.full_name }}"
+                    >
+                </div>
+                <div class="form-group mb-2">
+                    <label class="mb-2">Contact</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        name="contact"
+                        value="{{ data.contact }}"
+                    >
+                </div>
+                <div class="form-group mb-2">
+                    <label class="mb-2">Email</label>
+                    <input
+                        type="email"
+                        class="form-control"
+                        name="email"
+                        value="{{ data.email }}"
+                    >
+                </div>
+                <div class="form-group mb-2">
+                    <label class="mb-2">DOB</label>
+                    <input
+                        type="date"
+                        class="form-control"
+                        name="dob"
+                        value="{{ data.dob }}"
+                    >
+                </div>
+                <div class="form-group mb-2">
+                    <label class="mb-2">Join Date</label>
+                    <input
+                        type="date"
+                        class="form-control"
+                        name="join_date"
+                        value="{{ data.join_date }}"
+                    >
+                </div>
+                <div class="form-group mb-2">
+                    <label class="mb-2">Gender</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        name="gender"
+                        value="{{ data.gender }}"
+                    >
+                </div>
+                <div class="form-group mb-2">
+                    <label class="mb-2">Blood Group</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        name="blood_group"
+                        value="{{ data.blood_group }}"
+                    >
+                </div>
+                <div class="form-group mb-2">
+                    <label class="mb-2">Address</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        name="address"
+                        value="{{ data.address }}"
+                    >
+                </div>
+                <div class="form-group mb-2">
+                    <label>Select Department</label>
+                    <select name="department" class="form-control">
+                        {% for val in department %}
+                        <option value="{{ val.id }}">{{ val.department_name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>
 {% endblock %}

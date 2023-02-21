@@ -31,8 +31,20 @@ def employee_add(request):
         return redirect('emp-index')
     return render(request, 'employees/add_employee.html', context)
 
-def employee_edit(request):
-    return render(request, 'employees/edit_employee.html')
+def employee_edit(request, id):
+    data = Employee.objects.get(id=id)
+    department = Department.objects.all()
+    user = User.objects.all()
 
-def employee_show(request):
-    return render(request, 'employees/show_employee.html')
+    context = {"data": data, "department": department, "user": user}
+    return render(request, 'employees/edit_employee.html', context)
+
+def employee_delete(request, id):
+    data = Employee.objects.get(id=id)
+    data.delete()
+    return redirect("emp-index")
+
+def employee_show(request, id):
+    data = Employee.objects.get(id=id)
+    context = {"data": data}
+    return render(request, 'employees/show_employee.html', context)
