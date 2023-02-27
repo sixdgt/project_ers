@@ -5,14 +5,17 @@
 {% endblock %}
 
 {% block content %}
-<div class="container mt-5">
+<div class="container mt-5 mb-5">
     <h1>This is employee edit page</h1>
     <a href="{% url 'emp-index' %}" class="btn btn-primary">BACK</a>
     <hr>
+
     <div class="row">
         <div class="col-md-2"></div>
         <div class="col-md-8">
-            <form>
+            <form action="{% url 'emp-update' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="id" value="{{ data.id }}" />
                 <div class="form-group mb-2">
                     <label class="mb-2">Full Name</label>
                     <input
@@ -93,6 +96,15 @@
                         {% endfor %}
                     </select>
                 </div>
+                <div class="form-group mb-2">
+                    <label>Select User</label>
+                    <select name="user" class="form-control">
+                        {% for val in user %}
+                        <option value="{{ val.id }}">{{ val.username }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <input type="submit" class="btn btn-primary mt-2" value="UPDATE">
             </form>
         </div>
         <div class="col-md-2"></div>
