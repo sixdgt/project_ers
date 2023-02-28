@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib import auth
 from django.contrib import messages
 from django.contrib.auth import login, logout
+from django.core.mail import send_mail
 
 # Create your views here.\
 class LogoutView(View):
@@ -51,4 +52,10 @@ class RegisterView(View):
                             username=username,
                             password=password)
             messages.success(request, 'Account created successfully')
+            send_mail(
+                'Account Creation | ERS', #subject
+                'Your accound has been created! Welcome ' + data.username, #message
+                'c4crypt@gmail.com', # sender
+                [data.email] # receiver
+            )
             return redirect('login')
