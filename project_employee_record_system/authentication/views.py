@@ -3,8 +3,15 @@ from django.views import View
 from django.contrib.auth.models import User
 from django.contrib import auth
 from django.contrib import messages
+from django.contrib.auth import login, logout
 
-# Create your views here.
+# Create your views here.\
+class LogoutView(View):
+    def get(self, request):
+        logout(request)
+        messages.success(request, "You're logged out!!")
+        return redirect('login')
+    
 class LoginVew(View):
     def get(self, request):
         return render(request, 'authentication/login.html')
@@ -12,8 +19,9 @@ class LoginVew(View):
     def post(self, request):
         username = request.POST.get('username')
         password = request.POST.get('password')
-        user = auth.authenticate(username, password)
+        user = auth.authenticate(username=username, password=password)
         if user:
+            login(request, user)
             messages.success(request, 'Login success')
             return redirect('emp-index')
         else:
