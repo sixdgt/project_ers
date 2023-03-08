@@ -20,5 +20,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('employee/', include('app_employeewebsite.urls')),
     path('authentication/', include('authentication.urls')),
+    path('api-auth/', include('rest_framework.urls')),
+    path('api/v1/ers/', include('ers_api.urls')),
     path('', include('app_employeewebsite.urls')), # incase if need to load via base url
 ]
